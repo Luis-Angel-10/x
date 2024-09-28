@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandarinas y Honguitos Alegres</title>
+    <style>
+        body {
+            background-color: #FFEBB7;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        h1 {
+            color: #FF6F61;
+            font-size: 3em;
+        }
+        p {
+            font-size: 1.5em;
+            color: #3D405B;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        .emoji {
+            font-size: 5em;
+            animation: bounce 2s infinite;
+        }
+        .emoji.mandarina {
+            animation-delay: 0.2s;
+        }
+        .emoji.hongito {
+            animation: spin 4s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: #3D405B;
+        }
+        footer a {
+            text-decoration: none;
+            color: #FF6F61;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #FF6F61; /* Color del botón */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px; /* Bordes redondeados */
+            font-size: 1.2em; /* Tamaño del texto */
+            margin-top: 20px; /* Espacio arriba del botón */
+            transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+        }
+        .btn:hover {
+            background-color: #FF4C40; /* Color al pasar el mouse */
+            transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <h1>🍊 Mandarinas y Honguitos 🍄</h1>
+    <p>¿Qué tal, amiga? ¿Listas para una aventura llena de colores y alegría?</p>
+    <div class="container">
+        <div class="emoji mandarinas">🍊</div>
+        <div class="emoji hongito">🍄</div>
+    </div>
+    <footer>
+        <p>¡No olvides sonreír hoy! 😊</p>
+    </footer>
+    <a href="Sonrie.html" class="btn">😊 Ven 😊</a>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Una Sonrisa para Ti! 😊</title>
+    <style>
+        body {
+            background-color: #FFFAE5;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+        h1 {
+            color: #FF7043;
+            font-size: 2.5em;
+        }
+        p {
+            color: #3D405B;
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .smile {
+            font-size: 100px;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .animated {
+            position: absolute;
+            font-size: 50px;
+            pointer-events: none; /* Evita que se pueda interactuar con los emojis */
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Espero haberte sacado una sonrisa! 😊</h1>
+    <p>Al menos lo intenté y espero que esto despeje tu mente un poco.</p>
+    <div class="smile">😄</div>
+    <p>Recuerda: ¡La sonrisa es contagiosa!</p>
+
+    <script>
+        // Función para crear emojis animados
+        function createAnimatedEmoji(emoji) {
+            const span = document.createElement('span');
+            span.className = 'animated';
+            span.innerText = emoji;
+            document.body.appendChild(span);
+
+            // Posicionar el emoji aleatoriamente
+            span.style.left = Math.random() * window.innerWidth + 'px';
+            span.style.top = Math.random() * window.innerHeight + 'px';
+
+            // Animación para que desaparezca y se elimine después de un tiempo
+            setTimeout(() => {
+                span.style.transition = 'opacity 1s';
+                span.style.opacity = '0';
+                setTimeout(() => span.remove(), 1000); // Elimina el elemento del DOM
+            }, 2000);
+        }
+
+        // Crear emojis animados cada 500ms
+        setInterval(() => {
+            createAnimatedEmoji('🎉'); // Puedes cambiar el emoji aquí
+        }, 500);
+    </script>
+</body>
+</html>

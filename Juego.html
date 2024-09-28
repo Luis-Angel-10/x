@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍊 Juego de Hongitos y Mandarinas 🍄</title>
+    <style>
+        body {
+            background-color: #FFFAE5;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        h1 {
+            color: #FF7043;
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+        p {
+            color: #3D405B;
+            font-size: 1.2em;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #FFDDC1;
+            border: 5px solid #FFA726;
+        }
+        .game-over {
+            font-size: 2em;
+            color: #E07A5F;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #FFA726; /* Color del botón */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px; /* Bordes redondeados */
+            font-size: 1.2em; /* Tamaño del texto */
+            margin-top: 20px; /* Espacio arriba del botón */
+            transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+        }
+        .btn:hover {
+            background-color: #FF8F00; /* Color al pasar el mouse */
+            transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <h1>🍊 Juego de Hongitos y Mandarinas 🍄</h1>
+    <p>Recoge todas las mandarinas y evita los hongitos para ganar puntos!</p>
+    <canvas id="gameCanvas" width="480" height="320"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Configuración del jugador, mandarinas y hongitos con emojis
+        let player = { x: 220, y: 280, size: 40, emoji: "😊" };
+        let mandarinas = [];
+        let hongitos = [];
+        let score = 0;
+        let gameOver = false;
+
+        // Crear mandarinas (🍊) aleatorias
+        function createMandarinas() {
+            let x = Math.floor(Math.random() * (canvas.width - 30));
+            mandarinas.push({ x: x, y: 0, size: 30, emoji: "🍊" });
+        }
+
+        // Crear hongitos (🍄) aleatorios
+        function createHongitos() {
+            let x = Math.floor(Math.random() * (canvas.width - 30));
+            hongitos.push({ x: x, y: 0, size: 30, emoji: "🍄" });
+        }
+
+        // Dibujar emojis en el canvas
+        function drawEmoji(element) {
+            ctx.font = `${element.size}px Arial`;
+            ctx.fillText(element.emoji, element.x, element.y);
+        }
+
+        // Actualizar la posición de las mandarinas y hongitos
+        function updateMandarinas() {
+            mandarinas.forEach(mandarina => mandarina.y += 3);
+        }
+
+        function updateHongitos() {
+            hongitos.forEach(hongito => hongito.y += 2);
+        }
+
+        // Detección de colisión entre el jugador y otros elementos
+        function checkCollision(a, b) {
+            return (
+                a.x < b.x + b.size &&
+                a.x + a.size > b.x &&
+                a.y < b.y + b.size &&
+                a.y + a.size > b.y
+            );
+        }
+
+        // Control del movimiento del jugador con pantalla táctil
+        document.addEventListener("touchstart", (e) => {
+            const touchX = e.touches[0].clientX;
+            if (touchX < window.innerWidth / 2) {
+                // Mover a la izquierda
+                if (player.x > 0) {
+                    player.x -= 20;
+                }
+            } else {
+                // Mover a la derecha
+                if (player.x + player.size < canvas.width) {
+                    player.x += 20;
+                }
+            }
+        });
+
+        // Bucle principal del juego
+        function gameLoop() {
+            if (gameOver) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = "30px Comic Sans MS";
+                ctx.fillStyle = "#E07A5F";
+                ctx.fillText("¡Juego Terminado!", 120, canvas.height / 2);
+                ctx.font = "20px Comic Sans MS";
+                ctx.fillText(`Puntaje: ${score}`, 190, canvas.height / 2 + 40);
+                return;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Dibujar jugador
+            drawEmoji(player);
+
+            // Dibujar y actualizar mandarinas
+            mandarinas.forEach(drawEmoji);
+            updateMandarinas();
+
+            // Dibujar y actualizar hongitos
+            hongitos.forEach(drawEmoji);
+            updateHongitos();
+
+            // Colisiones con mandarinas (recolectar)
+            mandarinas = mandarinas.filter(mandarina => {
+                if (checkCollision(player, mandarina)) {
+                    score += 1;
+                    return false; // Eliminar mandarina recolectada
+                }
+                return mandarina.y < canvas.height;
+            });
+
+            // Colisiones con hongitos (terminar juego)
+            hongitos = hongitos.filter(hongito => {
+                if (checkCollision(player, hongito)) {
+                    gameOver = true; // Termina el juego si colisiona con un hongito
+                }
+                return hongito.y < canvas.height;
+            });
+
+            // Mostrar puntaje
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#3D405B";
+            ctx.fillText(`Puntaje: ${score}`, 10, 20);
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Crear mandarinas y hongitos cada cierto tiempo
+        setInterval(createMandarinas, 1000);
+        setInterval(createHongitos, 1500);
+
+        // Iniciar el juego
+        gameLoop();
+    </script>
+    <a href="fin.html" class="btn">😊🍄Fin❤️🍊</a>
+</body>
+</html>

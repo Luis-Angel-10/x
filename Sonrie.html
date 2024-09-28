@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Sonríe en las Mañanas!</title>
+    <style>
+        body {
+            background-color: #FFFAE5;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #FFA726;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.5em;
+            color: #424242;
+            margin-bottom: 30px;
+        }
+        .sun {
+            font-size: 8em;
+            color: #FFD54F;
+            animation: rotate 10s infinite linear;
+        }
+        .smiley {
+            font-size: 5em;
+            color: #FF7043;
+            animation: bounce 2s infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 1.2em;
+            color: #616161;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #FFA726; /* Color del botón */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px; /* Bordes redondeados */
+            font-size: 1.2em; /* Tamaño del texto */
+            margin-top: 20px; /* Espacio arriba del botón */
+            transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+        }
+        .btn:hover {
+            background-color: #FF8F00; /* Color al pasar el mouse */
+            transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <h1>☀️ ¡Sonríe en las Mañanas! 😊</h1>
+    <p>Empieza tu día con una sonrisa, porque una buena actitud ilumina todo tu día.</p>
+    <div class="sun">☀️</div>
+    <div class="smiley">😊</div>
+    <footer>
+        <p>¡Recuerda que cada mañana es una nueva oportunidad para ser feliz! 💛</p>
+    </footer>
+    <a href="Juego.html" class="btn">Jueguito 🍄🍊</a>
+</body>
+</html>
+
